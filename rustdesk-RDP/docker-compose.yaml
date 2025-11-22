@@ -9,7 +9,6 @@ services:
     depends_on:
       - hbbr
     restart: unless-stopped
-
   hbbr:
     container_name: hbbr
     image: rustdesk/rustdesk-server:latest
@@ -18,6 +17,5 @@ services:
       - root:/root
     network_mode: "host"
     restart: unless-stopped
-
 volumes:
   root:

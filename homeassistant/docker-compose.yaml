@@ -9,7 +9,7 @@ services:
       - config:/config
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
-    network_mode: host #allows Home Assistant to discover and communicate with LAN devices directly.
+    network_mode: host
 
 volumes:
   config:

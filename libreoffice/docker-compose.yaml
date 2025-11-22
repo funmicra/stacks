@@ -3,7 +3,7 @@ services:
     image: lscr.io/linuxserver/libreoffice:latest
     container_name: libreoffice
     security_opt:
-      - seccomp:unconfined #optional
+      - seccomp:unconfined
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -14,7 +14,7 @@ services:
       - 3010:3000
       - 3011:3001
     restart: unless-stopped
-    
+
 networks:
   default:
     external: true

@@ -8,8 +8,8 @@ services:
       - TZ=Etc/UTC
     volumes:
       - config:/config
-      - /home/funmicra/rsnapshot:/.snapshots #optional
-      - /home/funmicra:/data #optional
+      - /home/funmicra/rsnapshot:/.snapshots
+      - /home/funmicra:/data
     restart: unless-stopped
 
 networks:

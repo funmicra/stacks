@@ -9,7 +9,6 @@ services:
       - POSTGRES_DB=${DB_POSTGRESDB_DATABASE}
     volumes:
       - db:/var/lib/postgresql/data
-
   n8n:
     image: n8nio/n8n:latest
     container_name: n8n
@@ -46,13 +45,10 @@ services:
     container_name: N8N_domain
     restart: always
     command: tunnel --no-autoupdate run --token ${TOKEN}
-   
-
 networks:
   default:
     external: true
     name: Apps-Network
-
 volumes:
   app:
   db:

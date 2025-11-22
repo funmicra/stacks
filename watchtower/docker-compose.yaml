@@ -1,17 +1,14 @@
 services:
   watchtower:
-    image: containrrr/watchtower  # Use the Watchtower Docker image
-    container_name: Watchtower  # Set the name of the container to "watchtower"
-    restart: unless-stopped  # Restart the container unless stopped manually
-
-    # Environment variables for Watchtower
+    image: containrrr/watchtower
+    container_name: Watchtower
+    restart: unless-stopped
     environment:
-      - WATCHTOWER_POLL_INTERVAL=21600  # Set the polling interval to 6 hours (21600 seconds)
+      - WATCHTOWER_POLL_INTERVAL=21600
       - TZ=Europe/Athens
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock  # Mount Docker socket for container to access host's Docker daemon
-
+      - /var/run/docker.sock:/var/run/docker.sock
 networks:
   default:
     external: true
-    name: Apps-Network  # Use an external network named "Apps-Network"     
+    name: Apps-Network

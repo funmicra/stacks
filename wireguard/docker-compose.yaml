@@ -3,33 +3,31 @@ services:
     image: lscr.io/linuxserver/wireguard:latest
     container_name: Wireguard
     cap_add:
-      - NET_ADMIN  # Add NET_ADMIN capability
-      - SYS_MODULE  # Optional: Add SYS_MODULE capability
+      - NET_ADMIN
+      - SYS_MODULE
     environment:
-      - PUID=${PUID}  # User ID for file permissions
-      - PGID=${PGID}  # Group ID for file permissions
-      - TZ=${TZ}  # Timezone
-      - SERVERURL=${SERVERURL}  # Optional: Server URL
-      - SERVERPORT=${SERVERPORT}  # Optional: Server port
-      - PEERS=${PEERS}  # Optional: Peer configuration
-      - PEERDNS=${PEERDNS}  # Optional: Peer DNS configuration
-      - INTERNAL_SUBNET=${INTERNAL_SUBNET}  # Optional: Internal subnet
-      - ALLOWEDIPS=${ALLOWEDIPS}  # Optional: Allowed IPs
-      - PERSISTENTKEEPALIVE_PEERS=${PERSISTENTKEEPALIVE_PEERS}  # Optional: Persistent keepalive peers
-      - LOG_CONFS=${LOG_CONFS}  # Optional: Log configurations
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - SERVERURL=${SERVERURL}
+      - SERVERPORT=${SERVERPORT}
+      - PEERS=${PEERS}
+      - PEERDNS=${PEERDNS}
+      - INTERNAL_SUBNET=${INTERNAL_SUBNET}
+      - ALLOWEDIPS=${ALLOWEDIPS}
+      - PERSISTENTKEEPALIVE_PEERS=${PERSISTENTKEEPALIVE_PEERS}
+      - LOG_CONFS=${LOG_CONFS}
     volumes:
-      - config:/config  # Mount external volume for WireGuard configuration
-      - /lib/modules:/lib/modules  # Optional: Mount kernel modules
+      - config:/config
+      - /lib/modules:/lib/modules
     ports:
-      - ${HOST_PORT}:${CONTAINER_PORT}/udp  # Expose and forward port using UDP
+      - ${HOST_PORT}:${CONTAINER_PORT}/udp
     sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1  # Set a specific kernel parameter
-    restart: unless-stopped  # Restart policy for the container
-
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
 networks:
   default:
     external: true
     name: Apps-Network
-
 volumes:
   config:

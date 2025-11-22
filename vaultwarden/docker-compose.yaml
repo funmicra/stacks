@@ -30,11 +30,9 @@ services:
       - SMTP_USERNAME=${SMTP_USERNAME}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - SMTP_AUTH_MECHANISM="Mechanism"
-
 networks:
   default:
     external: true
     name: Apps-Network
-
-volumes: 
+volumes:
   data:

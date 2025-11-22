@@ -6,17 +6,14 @@ services:
       - "8282:80/tcp"
     environment:
       TZ: 'Europe/Athens'
-    # Volumes store your data between container upgrades
     volumes:
       - db:/var/www/html/db
       - logos:/var/www/html/images/uploads/logos
     restart: unless-stopped
-
 networks:
   default:
     external: true
     name: Apps-Network
-
 volumes:
   db:
   logos:

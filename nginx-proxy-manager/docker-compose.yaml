@@ -10,12 +10,10 @@ services:
     volumes:
       - data:/data
       - crypt:/etc/letsencrypt
-
 networks:
   default:
     external: true
     name: Apps-Network
-
 volumes:
   data:
   crypt:

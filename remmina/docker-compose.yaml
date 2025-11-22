@@ -12,11 +12,9 @@ services:
       - 3000:3000
       - 3001:3001
     restart: unless-stopped
-
 networks:
   default:
     external: true
     name: Apps-Network
-
 volumes:
   config:

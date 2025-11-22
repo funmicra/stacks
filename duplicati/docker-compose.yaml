@@ -6,7 +6,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
-      - CLI_ARGS=${CLI_ARGS} #optional
+      - CLI_ARGS=${CLI_ARGS}
     volumes:
       - config:/config
       - ${backups}:/backups

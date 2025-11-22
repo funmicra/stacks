@@ -3,7 +3,6 @@ services:
     container_name: Radio-Tunnel
     image: cloudflare/cloudflared:latest
     command: tunnel --no-autoupdate run --token eyJhIjoiOTc0YWMyYTZjNTZjNGJkY2FlNzc1MmM5ZDYyNmIxNjEiLCJ0IjoiYzIxN2M4OTktZTc2Zi00ZmY1LWEwNTUtMjk3YzU0MDZhNTVkIiwicyI6Ik9UQXpObVUyWVdZdFptUXhOaTAwWkRsa0xUZ3haR0l0TVRKbU9UUm1aVEJpTWpJeCJ9
- 
     restart: unless-stopped
 
 networks:

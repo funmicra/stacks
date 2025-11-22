@@ -17,4 +17,4 @@ services:
 
 volumes:
   work:
-  conf: 
+  conf:

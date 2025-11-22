@@ -1,2 +1,60 @@
 .env
-heimdall.yaml
+/loki/
+/matomo/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Project-level .env files (including in subfolders)
+**/.env
+
+# IDE / editor noise
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+logs/
+**/logs/
+
+# Byte-compiled / cache
+*.cache
+.cache/
+
+# OS-level files
+.DS_Store
+Thumbs.db
+
+# Docker
+**/docker-compose.override.yml
+**/docker-compose.local.yml
+
+# Backup / temp
+*.bak
+*.tmp
+*.old
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Data
+*.sqlite3
+*.db
+
+# Environment templates allowed to stay
+# (keeps .env-template or .env.example visible)
+!.env-template
+!.env.example

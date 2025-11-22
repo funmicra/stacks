@@ -40,4 +40,4 @@ networks:
 
 volumes:
   config:
-  db-config: 
+  db-config:

@@ -2,17 +2,17 @@ services:
   duckdns:
     image: lscr.io/linuxserver/duckdns:latest
     container_name: DuckDNS
-    network_mode: host #optional
+    network_mode: host
     environment:
-      - PUID=${PUID} #optional
-      - PGID=${PGID} #optional
-      - TZ=${TZ} #optional
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
       - SUBDOMAINS=${SUBDOMAINS}
       - TOKEN=${TOKEN}
-      - UPDATE_IP=ipv4 #optional
-      - LOG_FILE=false #optional
+      - UPDATE_IP=ipv4
+      - LOG_FILE=false
     volumes:
-      - config:/config #optional
+      - config:/config
     restart: unless-stopped
 
 networks:

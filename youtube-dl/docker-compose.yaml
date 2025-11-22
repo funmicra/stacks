@@ -1,28 +1,26 @@
-services:  # Define the services that make up the application.
-  ytdl_material:  # Service name for YouTube-DL Material container.
-    container_name: YoutTube-dl  # Assign a specific name to the container.
-    environment:  # Set environment variables for the container.
-      ytdl_mongodb_connection_string: 'mongodb://ytdl-mongo-db:27017'  # MongoDB connection string.
-      ytdl_use_local_db: 'true'  # Use a local database.
-      write_ytdl_config: 'true'  # Write YouTube-DL config.
-    restart: unless-stopped  # Restart policy: restart unless manually stopped.
-    volumes:  # Mount volumes to store data and configuration.
-      - config:/app/appdata  # Mount youtubedl_config volume to /app/appdata.
-      - audio:/app/audio  # Mount youtubedl_audio volume to /app/audio.
-      - /media/youtube-dl:/app/video  # Mount host directory /media/youtube-dl to /app/video.
-      - subscriptions:/app/subscriptions  # Mount youtubedl_subscriptions volume to /app/subscriptions.
-      - users:/app/users  # Mount youtubedl_users volume to /app/users.
-    ports:  # Map container port 17442 to host port 8998.
+services:
+  ytdl_material:
+    container_name: YoutTube-dl
+    environment:
+      ytdl_mongodb_connection_string: 'mongodb://ytdl-mongo-db:27017'
+      ytdl_use_local_db: 'true'
+      write_ytdl_config: 'true'
+    restart: unless-stopped
+    volumes:
+      - config:/app/appdata
+      - audio:/app/audio
+      - /media/youtube-dl:/app/video
+      - subscriptions:/app/subscriptions
+      - users:/app/users
+    ports:
       - 8998:17442
-    image: tzahi12345/youtubedl-material:latest  # Docker image to use.
-
-networks:  # Define networks for inter-container communication.
-  default:  # Default network.
+    image: tzahi12345/youtubedl-material:latest
+networks:
+  default:
     external: true
-    name: Apps-Network  # Use the Apps-Network.
-
+    name: Apps-Network
 volumes:
-  config:  # Volume for YouTube-DL Material configuration.
-  audio:  # Volume for audio files.
-  subscriptions:  # Volume for subscriptions data.
-  users:  # Volume for user data.
+  config:
+  audio:
+  subscriptions:
+  users:

@@ -16,7 +16,6 @@ services:
       - db
     volumes:
       - app:/var/www/html
-
   db:
     image: mariadb:10.6
     container_name: matomo-db
@@ -28,13 +27,10 @@ services:
       - MYSQL_PASSWORD=Hesitate-Barista8-Chewer
     volumes:
       - db:/var/lib/mysql
-
-
 networks:
   default:
     external: true
     name: Apps-Network
-
 volumes:
   app:
-  db: 
+  db:

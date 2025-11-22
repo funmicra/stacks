@@ -3,67 +3,61 @@ services:
     image: lscr.io/linuxserver/nextcloud:latest
     container_name: Nextcloud
     environment:
-      - PUID=1000               # Process User ID
-      - PGID=1000               # Process Group ID
-      - TZ=Europe/Athens        # Timezone
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Athens
     volumes:
-      - app_config:/config     # Nextcloud configuration data
+      - app_config:/config
       - app_data:/data
-      - /media/storage:/Storage   # Mount from host system
-      - /media/NFS-WD:/media/NFS-WD     # Another mount from host system
+      - /media/storage:/Storage
+      - /media/NFS-WD:/media/NFS-WD
     ports:
-      - 443:443              # Maps host port 443 to container port 443 for HTTPS
+      - 443:443
     depends_on:
-      - mariadb              # Depends on the MariaDB service
-    restart: unless-stopped  # Restart policy
-
+      - mariadb
+    restart: unless-stopped
   mariadb:
     image: lscr.io/linuxserver/mariadb:latest
     container_name: Nextcloud-db
     environment:
-      - PUID=1000               # Process User ID
-      - PGID=1000               # Process Group ID
-      - TZ=Europe/Athens        # Timezone
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}   # MariaDB root password
-      - MYSQL_DATABASE=${MYSQL_DATABASE}                # Database name
-      - MYSQL_USER=${MYSQL_USER}                      # Database user
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}           # Database password
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Athens
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
-    - db_config:/config    # MariaDB configuration data
-    - db_data:/data        # MariaDB data
+    - db_config:/config
+    - db_data:/data
     ports:
-      - 3306:3306             # Maps host port 3306 to container port 3306 for MySQL
-    restart: unless-stopped   # Restart policy
-
+      - 3306:3306
+    restart: unless-stopped
   code:
-    image: collabora/code:latest  # Docker image to use for the service
-    container_name: Nextcloud-office  # Name of the container
-    restart: unless-stopped  # Restart policy: always (restart container automatically)
+    image: collabora/code:latest
+    container_name: Nextcloud-office
+    restart: unless-stopped
     environment:
-      - password=${COLLABORA_PASSWORD}  # Set environment variable for password
-      - username=${COLLABORA_USERNAME}  # Set environment variable for username
-      - domain=${COLLABORA_DOMAIN}      # Set environment variable for domain
-      - extra_params=--o:ssl.enable=true  # Additional parameters for collabora
+      - password=${COLLABORA_PASSWORD}
+      - username=${COLLABORA_USERNAME}
+      - domain=${COLLABORA_DOMAIN}
+      - extra_params=--o:ssl.enable=true
     ports:
-      - 9980:9980  # Map host port 9980 to container port 9980 for access
-
+      - 9980:9980
   cloudflared_nextcloud:
     container_name: Nextcloud-Domain
     image: cloudflare/cloudflared:latest
     command: tunnel --no-autoupdate run --token ${NEXTCLOUD_TOKEN}
     restart: unless-stopped
-
   cloudflared_collabora:
     container_name: Office-Domain
     image: cloudflare/cloudflared:latest
     command: tunnel --no-autoupdate run --token ${COLLABORA_TOKEN}
     restart: unless-stopped
-
 networks:
   default:
     external: true
-    name: Apps-Network  # External network configuration named Apps-Network
-
+    name: Apps-Network
 volumes:
   app_config:
   app_data:
