@@ -52,6 +52,7 @@ WORK_DIR=/path/to/your/stacks
 ENABLE_TELEGRAM=True (If empty, by default is false)
 TELEGRAM_TOKEN=your_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
+WORK_DIR=
 ```
 Subfolders can each contain their own .env files; Mine remain ignored via .gitignore.
 
